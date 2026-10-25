@@ -10,23 +10,27 @@
 <meta property="og:title" content="Chiang Rai Information ข้อมูลการท่องเที่ยวเชียงราย">
 <meta property="og:description" content="รวมลิงก์และไฟล์ข้อมูลท่องเที่ยวเชียงราย โดย การท่องเที่ยวแห่งประเทศไทย (ททท.) สำนักงานเชียงราย">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#1d3557">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap">
 <style>
 :root {
-  --brand-900: #0b3a6e;
-  --brand-800: #14529c;
-  --brand-700: #1f6fc2;
-  --brand-100: #e8f1fb;
-  --brand-50: #f3f8fd;
-  --bg: #f5f7fa;
+  /* ธีมสี: น้ำเงินมหาสมุทร (#1d3557 #457b9d #a8dadc #caf0f8 #0077b6) + ชมพู–ส้มจากโลโก้ Amazing Thailand */
+  --brand-900: #1d3557;
+  --brand-800: #1d3557;
+  --brand-700: #457b9d;
+  --brand-200: #a8dadc;
+  --brand-100: #caf0f8;
+  --brand-50: #eef8fb;
+  --chip: #f1faee;
+  --rainbow: linear-gradient(90deg, #e4007c, #f7941d 35%, #00b4d8 65%, #0077b6 85%, #03045e);
+  --bg: #f1f8fa;
   --paper: #ffffff;
-  --text: #17212b;
-  --muted: #5a6673;
-  --line: #e3e8ee;
-  --line-strong: #cfd6de;
+  --text: #1d3557;
+  --muted: #4d6378;
+  --line: #d6e6ec;
+  --line-strong: #c6cfdb;
   --danger: #b42318;
   --danger-bg: #fdecea;
   --warn-bg: #fff6dc;
@@ -35,8 +39,8 @@
   --ok-text: #1b5e35;
   --focus: #c77700;
   --radius: 14px;
-  --shadow-sm: 0 1px 2px rgba(16, 40, 72, .06);
-  --shadow: 0 1px 2px rgba(16, 40, 72, .05), 0 6px 20px rgba(16, 40, 72, .07);
+  --shadow-sm: 0 1px 2px rgba(26, 41, 61, .07);
+  --shadow: 0 1px 2px rgba(26, 41, 61, .06), 0 6px 20px rgba(26, 41, 61, .08);
   --font: "Sarabun", "Noto Sans Thai", "Leelawadee UI", "Thonburi", Tahoma, system-ui, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -62,14 +66,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96);
-  backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line);
+  backdrop-filter: saturate(1.4) blur(8px);
 }
+/* แถบสีรุ้งใต้หัวเว็บ (โทนสีสดแบบ Amazing Thailand) */
+.site-header::after { content: ''; display: block; height: 4px; background: var(--rainbow); }
 .header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 72px; }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; color: inherit; text-decoration: none; }
 .brand-logo { height: 46px; width: auto; flex: none; }
 .brand-text { display: flex; flex-direction: column; min-width: 0; }
 .brand-name { font-size: 1.3rem; font-weight: 700; line-height: 1.2; color: var(--brand-900); letter-spacing: .1px; }
 .brand-sub { font-size: .98rem; font-weight: 500; line-height: 1.35; color: var(--muted); }
+.header-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.lang-switch { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.lang-switch button {
+  min-width: 44px; height: 38px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent;
+  color: var(--muted); font-weight: 600; font-size: .92rem; cursor: pointer; letter-spacing: .3px;
+}
+.lang-switch button:hover { color: var(--brand-900); }
+.lang-switch button[aria-pressed="true"] { background: linear-gradient(115deg, #b8006a, #e4007c); color: #fff; box-shadow: var(--shadow-sm); }
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
@@ -81,11 +95,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .search-bar { padding: 0 0 14px; }
 .search-field { position: relative; }
 .search-field > svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--muted); pointer-events: none; }
-.search-field input {
+.search-field input[type="search"] {
   width: 100%; height: 48px; padding: 0 48px 0 44px; border-radius: 999px;
   border: 1px solid var(--line-strong); background: var(--bg); font-size: 16px;
 }
-.search-field input:focus { background: #fff; border-color: var(--brand-700); outline: none; box-shadow: 0 0 0 3px rgba(31,111,194,.18); }
+.search-field input[type="search"]:focus { background: #fff; border-color: var(--brand-700); outline: none; box-shadow: 0 0 0 3px rgba(52,80,122,.2); }
 .search-field input::-webkit-search-cancel-button { display: none; }
 .search-clear {
   position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
@@ -101,7 +115,64 @@ main { min-height: 60vh; }
 .result-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 16px; }
 .result-head p { margin: 0; color: var(--muted); }
 .result-head strong { color: var(--text); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 20px; }
+.grid { display: flex; flex-direction: column; gap: 14px; max-width: 860px; margin: 0 auto; }
+.result-head { max-width: 860px; margin-left: auto; margin-right: auto; }
+
+/* ---------- การ์ดแบบปุ่มยาว (pill) ---------- */
+.pill {
+  display: flex; align-items: center; gap: 18px; min-width: 0;
+  --c1: #1d3557; --c2: #3d6f91; --soft: #caf0f8;
+  padding: 10px 12px 10px 12px; border-radius: 999px; background: linear-gradient(115deg, var(--c1), var(--c2)); color: #fff;
+  box-shadow: 0 2px 4px rgba(26,41,61,.10), 0 8px 22px rgba(26,41,61,.10);
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.pill:hover { transform: translateY(-2px); filter: brightness(1.08) saturate(1.05); box-shadow: 0 4px 8px rgba(26,41,61,.14), 0 14px 30px rgba(26,41,61,.14); }
+.pill-thumb-link { display: block; flex: none; border-radius: 999px; }
+.pill .cover.pill-thumb {
+  flex: none; width: 140px; height: 70px; aspect-ratio: auto; border-radius: 999px;
+  background: var(--soft); box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
+}
+.pill .cover.pill-thumb .cover-fallback { background: var(--soft); color: var(--c2); }
+.pill .cover.pill-thumb .cover-fallback svg { width: 28px; height: 28px; }
+.pill-thumb-link:hover img { transform: scale(1.05); }
+.pill .card-title {
+  flex: 1; min-width: 0; margin: 0; color: #fff; font-size: 1.22rem; font-weight: 500; line-height: 1.4;
+  -webkit-line-clamp: 2;
+}
+.pill .card-title a { color: inherit; text-decoration: none; }
+.pill .card-title a:hover { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.6); text-underline-offset: 4px; }
+.pill-actions { display: flex; gap: 10px; flex: none; }
+.pill-btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px;
+  border-radius: 50%; border: 2px solid rgba(255,255,255,.5); background: #fff; color: var(--c2, var(--brand-800));
+  cursor: pointer; text-decoration: none; transition: background-color .15s ease, transform .15s ease;
+}
+.pill-btn svg { width: 24px; height: 24px; }
+.pill-btn:hover { background: var(--soft, #fff); transform: scale(1.08); color: var(--c1, var(--brand-900)); }
+.pill-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pill-btn[disabled] { opacity: .4; cursor: not-allowed; transform: none; }
+/* สีการ์ดหมุนเวียน 6 สี: น้ำเงินมหาสมุทร + ชมพู/แดง/ส้มแบบ Amazing Thailand
+   (ตัวอักษรขาวบนทุกสีผ่านเกณฑ์ contrast 4.5:1) */
+.tone-0 { --c1: #03045e; --c2: #0077b6; --soft: #caf0f8; }
+.tone-1 { --c1: #a0005a; --c2: #d10073; --soft: #fde3f1; }
+.tone-2 { --c1: #1d3557; --c2: #3d6f91; --soft: #a8dadc; }
+.tone-3 { --c1: #9b1b2a; --c2: #d62839; --soft: #fde2e4; }
+.tone-4 { --c1: #023e8a; --c2: #0069a8; --soft: #90e0ef; }
+.tone-5 { --c1: #a03d00; --c2: #c24e00; --soft: #ffe8d1; }
+.pill .card-title:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+@media (max-width: 600px) {
+  .pill { gap: 12px; padding: 8px; }
+  .pill .cover.pill-thumb { width: 88px; height: 50px; }
+  .pill .card-title { font-size: 1rem; }
+  .pill-actions { gap: 6px; }
+  .pill-btn { width: 44px; height: 44px; }
+  .pill-btn svg { width: 20px; height: 20px; }
+}
+.skeleton.pill { background: var(--brand-100); box-shadow: none; }
+.skeleton.pill .pill-thumb, .skeleton.pill .sk-line, .skeleton.pill .sk-circle { background: linear-gradient(90deg, var(--brand-200) 0%, var(--brand-50) 50%, var(--brand-200) 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite linear; }
+.skeleton.pill .pill-thumb { width: 140px; height: 70px; border-radius: 999px; flex: none; }
+.sk-circle { width: 56px; height: 56px; border-radius: 50%; flex: none; }
+@media (max-width: 600px) { .skeleton.pill .pill-thumb { width: 88px; height: 50px; } .sk-circle { width: 44px; height: 44px; } }
 
 /* ---------- card ---------- */
 .card {
@@ -117,7 +188,7 @@ main { min-height: 60vh; }
 .cover img { transition: transform .3s ease; }
 .cover-fallback {
   width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  color: var(--brand-700); background: linear-gradient(135deg, #eaf2fb, #d9e7f6);
+  color: var(--brand-700); background: linear-gradient(135deg, var(--brand-50), var(--brand-200));
 }
 .cover-fallback svg { width: 34px; height: 34px; opacity: .85; }
 .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
@@ -167,7 +238,7 @@ dialog {
   border: 0; border-radius: 16px; padding: 0; width: min(720px, calc(100% - 24px));
   max-height: calc(100% - 24px); background: var(--paper); color: var(--text); box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
-dialog::backdrop { background: rgba(10, 25, 45, .5); }
+dialog::backdrop { background: rgba(26, 41, 61, .55); }
 .dialog-head {
   position: sticky; top: 0; z-index: 2; background: var(--paper); display: flex; align-items: flex-start; gap: 12px;
   justify-content: space-between; padding: 16px 16px 12px 20px; border-bottom: 1px solid var(--line);
@@ -190,21 +261,30 @@ dialog::backdrop { background: rgba(10, 25, 45, .5); }
 .hint { font-size: .86rem; color: var(--muted); margin: 4px 0 0; }
 
 /* ---------- footer ---------- */
-.site-footer { margin-top: 40px; background: var(--brand-900); color: #dbe6f3; padding: 28px 0; }
+.site-footer { margin-top: 40px; background: var(--brand-900); color: var(--brand-100); padding: 28px 0; position: relative; }
+.site-footer::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--rainbow); }
 .site-footer a { color: #fff; display: inline-flex; align-items: center; min-height: 44px; }
-.footer-grid { display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between; align-items: flex-end; }
-.footer-org { font-weight: 600; color: #fff; margin: 0 0 10px; }
+.footer-grid { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+.site-footer .footer-org { font-weight: 600; color: #fff; margin: 0 0 14px; }
+.site-footer .social-links { justify-content: center; }
+.site-footer a.admin-btn {
+  gap: 6px; min-height: 36px; padding: 4px 14px; border-radius: 999px; font-size: .85rem; font-weight: 600;
+  letter-spacing: .3px; color: var(--brand-200); text-decoration: none; border: 1px solid rgba(255,255,255,.3);
+}
+.site-footer a.admin-btn:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.6); }
+.admin-btn svg { width: 15px; height: 15px; }
 .site-footer p { margin: 0; }
 .social-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .site-footer a.social-btn {
-  width: 44px; height: 44px; border-radius: 50%; justify-content: center; color: #fff;
-  box-shadow: 0 0 0 2px rgba(255,255,255,.8); transition: transform .15s ease;
+  width: 48px; height: 48px; border-radius: 50%; justify-content: center; color: var(--brand-800);
+  background: var(--chip); border: 2px solid rgba(0,0,0,.12); transition: transform .15s ease, background-color .15s ease;
 }
 .site-footer a.social-btn:hover { transform: translateY(-2px); }
 .social-btn svg { width: 24px; height: 24px; }
-.s-facebook { background: #1877f2; }
-.s-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
-.s-email { background: #5f6b78; }
+.site-footer a.social-btn:hover { filter: brightness(1.1); }
+.s-facebook { background: #1877f2 !important; color: #fff !important; border-color: rgba(255,255,255,.7) !important; }
+.s-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%) !important; color: #fff !important; border-color: rgba(255,255,255,.7) !important; }
+.s-email { background: #0077b6 !important; color: #fff !important; border-color: rgba(255,255,255,.7) !important; }
 .footer-links { font-size: .92rem; text-align: right; }
 .footer-links a { color: #c9d8ea; }
 
@@ -229,7 +309,7 @@ textarea { min-height: 100px; resize: vertical; }
   border: 1px solid var(--line); border-radius: 12px; user-select: none; -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
-.order-item.dragging { box-shadow: 0 10px 30px rgba(16,40,72,.18); border-color: var(--brand-700); position: relative; z-index: 5; }
+.order-item.dragging { box-shadow: 0 10px 30px rgba(26,41,61,.18); border-color: var(--brand-700); position: relative; z-index: 5; }
 .order-item.pressing { background: var(--brand-50); }
 .drag-handle {
   flex: none; width: 36px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
@@ -291,6 +371,14 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
   .brand-sub { font-size: .9rem; }
   .grid { gap: 14px; }
   .footer-links { text-align: left; }
+  .header-row { gap: 8px; }
+  .brand { gap: 8px; }
+  .lang-switch button { min-width: 38px; padding: 0 6px; font-size: .86rem; }
+}
+@media (max-width: 380px) {
+  .brand-logo { height: 32px; }
+  .brand-name { font-size: 1.02rem; }
+  .brand-sub { font-size: .82rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -298,7 +386,7 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
+<a class="skip-link" href="#main" data-i18n="skip">ข้ามไปยังเนื้อหาหลัก</a>
 <div id="mode-banner" class="mode-banner" role="note" hidden></div>
 
 <header class="site-header">
@@ -308,19 +396,25 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
         <img id="brand-logo" class="brand-logo" alt="" hidden>
         <span class="brand-text">
           <span class="brand-name" lang="en">Chiang Rai Information</span>
-          <span class="brand-sub">ข้อมูลการท่องเที่ยวเชียงราย</span>
+          <span class="brand-sub" data-i18n="brandSub">ข้อมูลการท่องเที่ยวเชียงราย</span>
         </span>
       </a>
-      <button type="button" class="icon-btn" id="search-toggle" aria-expanded="false" aria-controls="search-bar" aria-label="ค้นหา">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      </button>
+      <div class="header-tools">
+        <div class="lang-switch" role="group" aria-label="ภาษา / Language">
+          <button type="button" data-lang="th" lang="th" aria-pressed="true" title="ภาษาไทย">TH</button>
+          <button type="button" data-lang="en" lang="en" aria-pressed="false" title="English">EN</button>
+        </div>
+        <button type="button" class="icon-btn" id="search-toggle" aria-expanded="false" aria-controls="search-bar" data-i18n-attr="aria-label:search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+      </div>
     </div>
-    <form class="search-bar" id="search-bar" role="search" aria-label="ค้นหาข้อมูล" hidden>
-      <label for="q" class="sr-only">ค้นหา</label>
+    <form class="search-bar" id="search-bar" role="search" data-i18n-attr="aria-label:search" hidden>
+      <label for="q" class="sr-only" data-i18n="search">ค้นหา</label>
       <div class="search-field">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" id="q" name="q" autocomplete="off" enterkeyhint="search" placeholder="ค้นหาชื่อ คำอธิบาย หรือแท็ก...">
-        <button type="button" class="search-clear" id="search-clear" aria-label="ล้างคำค้นหาและปิดช่องค้นหา">
+        <input type="search" id="q" name="q" autocomplete="off" enterkeyhint="search" data-i18n-attr="placeholder:searchPlaceholder">
+        <button type="button" class="search-clear" id="search-clear" data-i18n-attr="aria-label:searchClose">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
         </button>
       </div>
@@ -333,17 +427,17 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
   <div id="public-view">
     <section class="list-section" aria-labelledby="list-title">
       <div class="container">
-        <h2 id="list-title" class="sr-only">รายการข้อมูล</h2>
+        <h2 id="list-title" class="sr-only" data-i18n="listTitle">รายการข้อมูล</h2>
         <div class="result-head" id="result-head" hidden>
           <p id="result-count" role="status" aria-live="polite"></p>
-          <button type="button" class="btn btn-ghost btn-sm" id="result-clear">ล้างการค้นหา</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="result-clear" data-i18n="clearSearch">ล้างการค้นหา</button>
         </div>
         <p class="sr-only" id="list-status" role="status" aria-live="polite"></p>
         <div id="results-state"></div>
         <div class="grid" id="results-grid"></div>
         <div class="load-more" id="load-more" hidden>
-          <span id="load-more-text">กำลังโหลดเพิ่ม…</span>
-          <button type="button" class="btn btn-outline" id="load-more-btn" hidden>แสดงเพิ่มเติม</button>
+          <span id="load-more-text" data-i18n="loadingMore">กำลังโหลดเพิ่ม…</span>
+          <button type="button" class="btn btn-outline" id="load-more-btn" data-i18n="showMore" hidden>แสดงเพิ่มเติม</button>
         </div>
       </div>
     </section>
@@ -364,29 +458,29 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <p class="footer-org">การท่องเที่ยวแห่งประเทศไทย (ททท.) สำนักงานเชียงราย</p>
-      <ul class="social-links" aria-label="ช่องทางติดตามและติดต่อ">
+      <p class="footer-org" data-i18n="org">การท่องเที่ยวแห่งประเทศไทย (ททท.) สำนักงานเชียงราย</p>
+      <ul class="social-links" data-i18n-attr="aria-label:socialLabel">
         <li>
-          <a class="social-btn s-facebook" href="https://www.facebook.com/tatchiangrai" target="_blank" rel="noopener noreferrer" aria-label="Facebook ททท. สำนักงานเชียงราย (เปิดในแท็บใหม่)" title="Facebook">
+          <a class="social-btn s-facebook" href="https://www.facebook.com/tatchiangrai" target="_blank" rel="noopener noreferrer" data-i18n-attr="aria-label:facebookLabel" title="Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21.5v-8h2.7l.4-3.2h-3.1V8.3c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4v3.2h2.8v8z"/></svg>
           </a>
         </li>
         <li>
-          <a class="social-btn s-instagram" href="https://www.instagram.com/tatchiangrai" target="_blank" rel="noopener noreferrer" aria-label="Instagram ททท. สำนักงานเชียงราย (เปิดในแท็บใหม่)" title="Instagram">
+          <a class="social-btn s-instagram" href="https://www.instagram.com/tatchiangrai" target="_blank" rel="noopener noreferrer" data-i18n-attr="aria-label:instagramLabel" title="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
           </a>
         </li>
         <li>
-          <a class="social-btn s-email" href="mailto:tatchrai@tat.or.th" aria-label="อีเมล tatchrai@tat.or.th" title="tatchrai@tat.or.th">
+          <a class="social-btn s-email" href="mailto:tatchrai@tat.or.th" data-i18n-attr="aria-label:emailLabel" title="tatchrai@tat.or.th">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
           </a>
         </li>
       </ul>
     </div>
-    <div class="footer-links">
-      <p><a href="mailto:tatchrai@tat.or.th">tatchrai@tat.or.th</a></p>
-      <p><a href="#admin">สำหรับเจ้าหน้าที่</a></p>
-    </div>
+    <a class="admin-btn" href="#admin" data-i18n-attr="title:staff">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      Admin
+    </a>
   </div>
 </footer>
 
@@ -394,7 +488,7 @@ td .row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 <dialog id="detail-dialog" aria-labelledby="detail-title">
   <div class="dialog-head">
     <h2 id="detail-title">รายละเอียด</h2>
-    <button type="button" class="btn btn-ghost" id="detail-close" aria-label="ปิดหน้าต่างรายละเอียด" autofocus>
+    <button type="button" class="btn btn-ghost" id="detail-close" data-i18n-attr="aria-label:closeDetail" autofocus>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
@@ -442,6 +536,8 @@ const ICONS = {
   grip: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>',
   down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  open: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/><path d="M14 4h6v6M20 4l-9 9"/></svg>',
   close: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
 };
 
@@ -459,16 +555,166 @@ const CHIANG_RAI_DISTRICTS = [
 ];
 
 const DEFAULT_CATEGORY_NAMES = ['แหล่งท่องเที่ยว', 'ศิลปวัฒนธรรม', 'ธรรมชาติ', 'อาหารและวิถีชีวิต', 'เส้นทางท่องเที่ยว', 'การเดินทาง'];
+const DEFAULT_CATEGORY_NAMES_EN = ['Attractions', 'Arts & Culture', 'Nature', 'Food & Local Life', 'Travel Routes', 'Getting Around'];
+
+/* =====================================================================
+   2 ภาษา (ไทย / English) — ข้อความหน้าเว็บสาธารณะ
+   ส่วนเจ้าหน้าที่ใช้ภาษาไทยเป็นหลัก
+   ===================================================================== */
+const I18N = {
+  th: {
+    docTitle: 'Chiang Rai Information ข้อมูลการท่องเที่ยวเชียงราย โดย การท่องเที่ยวแห่งประเทศไทย (ททท.) สำนักงานเชียงราย',
+    skip: 'ข้ามไปยังเนื้อหาหลัก',
+    brandSub: 'ข้อมูลการท่องเที่ยวเชียงราย',
+    search: 'ค้นหา',
+    searchPlaceholder: 'ค้นหาชื่อ คำอธิบาย หรือแท็ก...',
+    searchClose: 'ล้างคำค้นหาและปิดช่องค้นหา',
+    listTitle: 'รายการข้อมูล',
+    clearSearch: 'ล้างการค้นหา',
+    loadingMore: 'กำลังโหลดเพิ่ม…',
+    showMore: 'แสดงเพิ่มเติม',
+    org: 'การท่องเที่ยวแห่งประเทศไทย (ททท.) สำนักงานเชียงราย',
+    socialLabel: 'ช่องทางติดตามและติดต่อ',
+    facebookLabel: 'Facebook ททท. สำนักงานเชียงราย (เปิดในแท็บใหม่)',
+    instagramLabel: 'Instagram ททท. สำนักงานเชียงราย (เปิดในแท็บใหม่)',
+    emailLabel: 'อีเมล tatchrai@tat.or.th',
+    staff: 'สำหรับเจ้าหน้าที่',
+    closeDetail: 'ปิดหน้าต่างรายละเอียด',
+    demoBanner: 'ข้อมูลตัวอย่าง — ยังไม่ใช่ข้อมูลเผยแพร่จริง',
+    demoMode: ' (โหมดสาธิต)',
+    loading: 'กำลังโหลดข้อมูล',
+    loadFailed: 'โหลดข้อมูลไม่สำเร็จ',
+    retry: 'ลองใหม่',
+    emptyTitle: 'ยังไม่มีรายการ',
+    emptyText: 'โปรดกลับมาตรวจสอบอีกครั้งภายหลัง',
+    totalItems: 'ทั้งหมด {n} รายการ',
+    searchResult: 'ผลการค้นหา “{q}” {n} รายการ',
+    noResultTitle: 'ไม่พบรายการที่ค้นหา',
+    noResultText: 'ลองใช้คำค้นอื่น หรือล้างการค้นหาเพื่อดูรายการทั้งหมด',
+    openOnline: 'เปิดดูออนไลน์',
+    noLink: 'ยังไม่มีลิงก์',
+    details: 'รายละเอียด',
+    download: 'ดาวน์โหลด',
+    newTab: '(เปิดในแท็บใหม่)',
+    untitled: 'ไม่มีชื่อรายการ',
+    notFound: 'ไม่พบรายการหรือรายการนี้ยังไม่เปิดเผยแพร่',
+    notFoundTitle: 'ไม่พบรายการ',
+    category: 'หมวดหมู่',
+    area: 'พื้นที่',
+    languages: 'ภาษา',
+    source: 'แหล่งข้อมูล',
+    edition: 'ปี / รุ่น',
+    file: 'ไฟล์',
+    tags: 'แท็ก',
+    verified: 'ตรวจสอบลิงก์เมื่อ',
+    updated: 'ปรับปรุงเมื่อ',
+    hintDrive: 'เปิดผ่าน Google Drive ในแท็บใหม่ — บนมือถืออาจเสนอให้เปิดในแอป Google Drive',
+    hintSameSite: 'เปิดไฟล์บนเว็บไซต์นี้ในแท็บใหม่',
+    hintExternal: 'ลิงก์ไปยัง {host} — เปิดในแท็บใหม่',
+    copyLink: 'คัดลอกลิงก์',
+    copied: 'คัดลอกลิงก์แล้ว',
+    copyManual: 'คัดลอกลิงก์นี้ด้วยตนเอง',
+    district: 'อ.{d}',
+    province: 'จ.{p}',
+    errConfig: 'ยังไม่ได้ตั้งค่า Firebase ให้ครบ (CONFIG.FIREBASE ใน index.html) กรุณาติดต่อผู้ดูแลระบบ',
+    errSdk: 'โหลด Firebase SDK ไม่สำเร็จ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่',
+    errTimeout: 'เซิร์ฟเวอร์ไม่ตอบสนองภายในเวลาที่กำหนด กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่',
+    errUnavailable: 'เชื่อมต่อฐานข้อมูลไม่ได้ (อาจออฟไลน์อยู่) กรุณาลองใหม่',
+    errDenied: 'ไม่มีสิทธิ์ดำเนินการนี้ หรือข้อมูลไม่ผ่านเงื่อนไขของระบบ',
+    errGeneric: 'เกิดข้อผิดพลาด{code} กรุณาลองใหม่',
+  },
+  en: {
+    docTitle: 'Chiang Rai Information — Chiang Rai Travel Information by Tourism Authority of Thailand (TAT) Chiang Rai Office',
+    skip: 'Skip to main content',
+    brandSub: 'Chiang Rai Travel Information',
+    search: 'Search',
+    searchPlaceholder: 'Search titles, descriptions or tags...',
+    searchClose: 'Clear search and close',
+    listTitle: 'Items',
+    clearSearch: 'Clear search',
+    loadingMore: 'Loading more…',
+    showMore: 'Show more',
+    org: 'Tourism Authority of Thailand (TAT) Chiang Rai Office',
+    socialLabel: 'Follow and contact us',
+    facebookLabel: 'TAT Chiang Rai Office on Facebook (opens in a new tab)',
+    instagramLabel: 'TAT Chiang Rai Office on Instagram (opens in a new tab)',
+    emailLabel: 'Email tatchrai@tat.or.th',
+    staff: 'Staff only',
+    closeDetail: 'Close details',
+    demoBanner: 'Sample data — not yet official published content',
+    demoMode: ' (demo mode)',
+    loading: 'Loading',
+    loadFailed: 'Could not load data',
+    retry: 'Try again',
+    emptyTitle: 'No items yet',
+    emptyText: 'Please check back later.',
+    totalItems: '{n} items',
+    searchResult: 'Results for “{q}”: {n}',
+    noResultTitle: 'No matching items',
+    noResultText: 'Try another keyword, or clear the search to see all items.',
+    openOnline: 'View online',
+    noLink: 'No link yet',
+    details: 'Details',
+    download: 'Download',
+    newTab: '(opens in a new tab)',
+    untitled: 'Untitled',
+    notFound: 'This item was not found or is not published.',
+    notFoundTitle: 'Not found',
+    category: 'Category',
+    area: 'Area',
+    languages: 'Languages',
+    source: 'Source',
+    edition: 'Year / edition',
+    file: 'File',
+    tags: 'Tags',
+    verified: 'Link checked',
+    updated: 'Updated',
+    hintDrive: 'Opens in Google Drive in a new tab — on mobile you may be offered the Google Drive app.',
+    hintSameSite: 'Opens the file on this website in a new tab.',
+    hintExternal: 'Links to {host} — opens in a new tab.',
+    copyLink: 'Copy link',
+    copied: 'Link copied',
+    copyManual: 'Copy this link manually',
+    district: '{d} District',
+    province: '{p} Province',
+    errConfig: 'Firebase is not fully configured. Please contact the site administrator.',
+    errSdk: 'Could not load Firebase. Please check your internet connection and try again.',
+    errTimeout: 'The server did not respond in time. Please check your connection and try again.',
+    errUnavailable: 'Could not reach the database (you may be offline). Please try again.',
+    errDenied: 'Permission denied.',
+    errGeneric: 'Something went wrong{code}. Please try again.',
+  },
+};
+
+// ชื่ออำเภอ/จังหวัดภาษาอังกฤษ (ใช้แสดงเมื่อเลือก EN)
+const PLACE_EN = {
+  'เชียงราย': 'Chiang Rai', 'เมืองเชียงราย': 'Mueang Chiang Rai', 'เชียงของ': 'Chiang Khong', 'เชียงแสน': 'Chiang Saen',
+  'แม่สาย': 'Mae Sai', 'แม่จัน': 'Mae Chan', 'แม่ฟ้าหลวง': 'Mae Fa Luang', 'แม่สรวย': 'Mae Suai', 'เวียงป่าเป้า': 'Wiang Pa Pao',
+  'พาน': 'Phan', 'ป่าแดด': 'Pa Daet', 'แม่ลาว': 'Mae Lao', 'เวียงชัย': 'Wiang Chai', 'เวียงแก่น': 'Wiang Kaen',
+  'เวียงเชียงรุ้ง': 'Wiang Chiang Rung', 'ขุนตาล': 'Khun Tan', 'เทิง': 'Thoeng', 'พญาเม็งราย': 'Phaya Mengrai', 'ดอยหลวง': 'Doi Luang',
+};
+
+let LANG = 'th';
+function t(key, vars = {}) {
+  const s = I18N[LANG][key] ?? I18N.th[key] ?? key;
+  return s.replace(/\{(\w+)\}/g, (_, n) => (vars[n] ?? ''));
+}
+// เลือกข้อความตามภาษา: EN ใช้ฟิลด์ ...En ถ้ามี ไม่มีก็ใช้ภาษาไทย
+function loc(obj, field) {
+  if (LANG === 'en' && obj?.[`${field}En`]) return obj[`${field}En`];
+  return obj?.[field] || '';
+}
+function place(name) { return LANG === 'en' ? (PLACE_EN[name] || name) : name; }
 
 /* =====================================================================
    ข้อมูลตัวอย่าง (Demo mode เท่านั้น) — URL ที่ยังไม่มีเป็น null
    ===================================================================== */
-const DEMO_CATEGORIES = DEFAULT_CATEGORY_NAMES.map((name, i) => ({ id: `cat-${i + 1}`, name, sortOrder: i + 1, active: true }));
+const DEMO_CATEGORIES = DEFAULT_CATEGORY_NAMES.map((name, i) => ({ id: `cat-${i + 1}`, name, nameEn: DEFAULT_CATEGORY_NAMES_EN[i], sortOrder: i + 1, active: true }));
 
 const DEMO_RESOURCES = [
-  ['รวมลิงก์ข้อมูลแหล่งท่องเที่ยวในอำเภอเมืองเชียงราย', { categoryId: 'cat-1', district: 'เมืองเชียงราย', tags: ['วัด', 'พิพิธภัณฑ์'] }],
-  ['คู่มือท่องเที่ยวเชิงศิลปวัฒนธรรมเชียงราย', { categoryId: 'cat-2', fileType: 'PDF', fileSizeBytes: 8808038 }],
-  ['แผนที่เส้นทางท่องเที่ยวสามเหลี่ยมทองคำ', { categoryId: 'cat-5', district: 'เชียงแสน', fileType: 'PDF', tags: ['Golden Triangle'] }],
+  ['รวมลิงก์ข้อมูลแหล่งท่องเที่ยวในอำเภอเมืองเชียงราย', { categoryId: 'cat-1', district: 'เมืองเชียงราย', tags: ['วัด', 'พิพิธภัณฑ์'], titleEn: '[Sample] Attractions in Mueang Chiang Rai', descriptionEn: 'Sample item for testing the layout. No real link yet.' }],
+  ['คู่มือท่องเที่ยวเชิงศิลปวัฒนธรรมเชียงราย', { categoryId: 'cat-2', fileType: 'PDF', fileSizeBytes: 8808038, titleEn: '[Sample] Chiang Rai Arts & Culture Guide' }],
+  ['แผนที่เส้นทางท่องเที่ยวสามเหลี่ยมทองคำ', { categoryId: 'cat-5', district: 'เชียงแสน', fileType: 'PDF', tags: ['Golden Triangle'], titleEn: '[Sample] Golden Triangle Route Map' }],
   ['ข้อมูลท่องเที่ยวเชิงธรรมชาติบนดอยสูง', { categoryId: 'cat-3', district: 'แม่ฟ้าหลวง' }],
   ['E-Book อาหารพื้นถิ่นและวิถีชีวิตชาวเชียงราย', { categoryId: 'cat-4', fileType: 'PDF' }],
   ['แผนที่การเดินทางในตัวเมืองเชียงราย', { categoryId: 'cat-6', district: 'เมืองเชียงราย', fileType: 'PDF' }],
@@ -481,8 +727,8 @@ const DEMO_RESOURCES = [
   ['คู่มือฉบับร่างที่ยังไม่เผยแพร่', { status: 'draft' }],
   ['แผนที่ฉบับเก่าที่เก็บเข้าคลังแล้ว', { status: 'archived' }],
 ].map(([title, o], i) => ({
-  id: `demo-${String(i + 1).padStart(2, '0')}`, title: `[ตัวอย่าง] ${title}`, type: 'link',
-  description: 'รายการตัวอย่างสำหรับทดสอบการแสดงผล ยังไม่มีลิงก์จริง', categoryId: null, url: null,
+  id: `demo-${String(i + 1).padStart(2, '0')}`, title: `[ตัวอย่าง] ${title}`, titleEn: '', type: 'link',
+  description: 'รายการตัวอย่างสำหรับทดสอบการแสดงผล ยังไม่มีลิงก์จริง', descriptionEn: '', categoryId: null, url: null,
   downloadUrl: null, coverUrl: null, province: 'เชียงราย', district: null, languages: ['th'], tags: [],
   sourceName: 'แหล่งข้อมูลตัวอย่าง', edition: null, fileType: null, fileSizeBytes: null, featured: false,
   sortOrder: (i + 1) * 10, status: 'published', verifiedAt: null, updatedAt: `2026-10-${String(20 - i).padStart(2, '0')}`, ...o,
@@ -549,8 +795,12 @@ function driveFileId(u) {
 const driveViewUrl = (id) => `https://drive.google.com/file/d/${id}/view`;
 const driveDownloadUrl = (id) => `https://drive.google.com/uc?export=download&id=${id}`;
 
-const dateFmt = new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
-function fmtDate(d) { return d instanceof Date && !isNaN(d) ? dateFmt.format(d) : null; }
+const dateFmts = {
+  th: new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }),
+  en: new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+};
+function fmtDate(d) { return d instanceof Date && !isNaN(d) ? dateFmts[LANG].format(d) : null; }
+function fmtNum(n) { return n.toLocaleString(LANG === 'en' ? 'en-US' : 'th-TH'); }
 function toDateInput(d) {
   if (!(d instanceof Date) || isNaN(d)) return '';
   const p = (n) => String(n).padStart(2, '0');
@@ -569,13 +819,16 @@ function fmtSize(bytes) {
 }
 function langLabel(code) { return LANGS[code] || code; }
 function areaLabel(r) {
-  if (r.district) return `อ.${r.district}${r.province ? ` จ.${r.province}` : ''}`;
-  return r.province ? `จ.${r.province}` : null;
+  const parts = [];
+  if (r.district) parts.push(t('district', { d: place(r.district) }));
+  if (r.province) parts.push(t('province', { p: place(r.province) }));
+  return parts.length ? parts.join(LANG === 'en' ? ', ' : ' ') : null;
 }
 function displayTitle(r) {
-  if (r.title) return r.title;
+  const title = loc(r, 'title');
+  if (title) return title;
   const u = safeUrl(r.url);
-  return u ? u.hostname : 'ไม่มีชื่อรายการ';
+  return u ? u.hostname : t('untitled');
 }
 function fileInfo(r) {
   const parts = [r.fileType, fmtSize(r.fileSizeBytes)].filter(Boolean);
@@ -596,6 +849,12 @@ function appError(code, message) {
 }
 function errorMessage(e) {
   const code = String(e?.code || '').replace(/^firestore\//, '');
+  // หน้าสาธารณะเป็นภาษาอังกฤษ → ใช้ข้อความ EN สำหรับข้อผิดพลาดทั่วไป
+  if (LANG === 'en') {
+    const en = { config: 'errConfig', sdk: 'errSdk', timeout: 'errTimeout', unavailable: 'errUnavailable', 'permission-denied': 'errDenied' };
+    if (en[code]) return t(en[code]);
+    if (!code.startsWith('auth/') && code !== 'conflict' && code !== 'not-found') return t('errGeneric', { code: code ? ` (${code})` : '' });
+  }
   const map = {
     'config': 'ยังไม่ได้ตั้งค่า Firebase ให้ครบ (CONFIG.FIREBASE ใน index.html) กรุณาติดต่อผู้ดูแลระบบ',
     'sdk': 'โหลด Firebase SDK ไม่สำเร็จ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่',
@@ -624,7 +883,9 @@ function validateResource(d) {
     else if (/^https:\/\/github\.com\/[^/]+\/[^/]+\/blob\//.test(v)) e[field] = 'ห้ามใช้ลิงก์หน้า GitHub แบบ /blob/ ให้ใช้ URL ของ GitHub Pages เช่น https://<account>.github.io/<repository>/files/...';
   };
   if (d.title.length > 160) e.title = 'ไม่เกิน 160 ตัวอักษร';
+  if (d.titleEn.length > 160) e.titleEn = 'ไม่เกิน 160 ตัวอักษร';
   if (d.description.length > 2000) e.description = 'ไม่เกิน 2,000 ตัวอักษร';
+  if (d.descriptionEn.length > 2000) e.descriptionEn = 'ไม่เกิน 2,000 ตัวอักษร';
   urlCheck('url', d.url);
   urlCheck('downloadUrl', d.downloadUrl);
   urlCheck('coverUrl', d.coverUrl);
@@ -638,14 +899,16 @@ function validateResource(d) {
   return e;
 }
 
-const EDITABLE_FIELDS = ['title', 'description', 'type', 'categoryId', 'url', 'downloadUrl', 'coverUrl', 'province',
+const EDITABLE_FIELDS = ['title', 'titleEn', 'description', 'descriptionEn', 'type', 'categoryId', 'url', 'downloadUrl', 'coverUrl', 'province',
   'district', 'languages', 'tags', 'sourceName', 'edition', 'fileType', 'fileSizeBytes', 'featured', 'sortOrder',
   'status', 'verifiedAt'];
 function pickEditable(r) {
   const o = {};
   for (const k of EDITABLE_FIELDS) o[k] = r[k] ?? null;
   o.title = o.title || '';
+  o.titleEn = o.titleEn || '';
   o.description = o.description || '';
+  o.descriptionEn = o.descriptionEn || '';
   o.sourceName = o.sourceName || '';
   o.province = o.province || '';
   o.type = ['link', 'ebook', 'map'].includes(r.type) ? r.type : 'link';
@@ -885,10 +1148,16 @@ function setCategories(list) {
   state.categories = list.sort((a, b) => (a.sortOrder - b.sortOrder) || collator.compare(a.name, b.name));
   state.catMap = new Map(state.categories.map((c) => [c.id, c]));
 }
-function catName(id) { return id ? (state.catMap.get(id)?.name ?? null) : null; }
+function catName(id) {
+  const c = id ? state.catMap.get(id) : null;
+  return c ? loc(c, 'name') || null : null;
+}
 
+// ค้นหาได้ทั้งภาษาไทยและอังกฤษไม่ว่าจะเลือกภาษาใด
 function indexResource(r) {
-  r._hay = norm([r.title, r.description, catName(r.categoryId), r.province, r.district, r.sourceName, ...(r.tags || [])].join('\n'));
+  const c = r.categoryId ? state.catMap.get(r.categoryId) : null;
+  r._hay = norm([r.title, r.titleEn, r.description, r.descriptionEn, c?.name, c?.nameEn, r.province, PLACE_EN[r.province],
+    r.district, PLACE_EN[r.district], r.sourceName, ...(r.tags || [])].join('\n'));
   return r;
 }
 
@@ -972,47 +1241,52 @@ function coverEl(r) {
 }
 
 function openLinkProps(u, label) {
-  return { href: u.href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${label} (เปิดในแท็บใหม่)` };
+  return { href: u.href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${label} ${t('newTab')}` };
 }
 
 function primaryAction(r, extraClass = '') {
   const u = safeUrl(r.url);
-  if (!u) return h('button', { type: 'button', class: `btn ${extraClass}`, disabled: true }, 'ยังไม่มีลิงก์');
-  return h('a', { class: `btn ${extraClass}`, ...openLinkProps(u, `เปิดดูออนไลน์: ${displayTitle(r)}`) }, 'เปิดดูออนไลน์', icon('external'));
+  if (!u) return h('button', { type: 'button', class: `btn ${extraClass}`, disabled: true }, t('noLink'));
+  return h('a', { class: `btn ${extraClass}`, ...openLinkProps(u, `${t('openOnline')}: ${displayTitle(r)}`) }, t('openOnline'), icon('external'));
 }
 
 function downloadAction(r) {
   const u = safeUrl(r.downloadUrl);
   if (!u) return null;
-  const props = { class: 'btn btn-outline', href: u.href, 'aria-label': `ดาวน์โหลด: ${displayTitle(r)}` };
+  const props = { class: 'btn btn-outline', href: u.href, 'aria-label': `${t('download')}: ${displayTitle(r)}` };
   if (isSameOrigin(u)) props.download = true;
-  else { props.target = '_blank'; props.rel = 'noopener noreferrer'; props['aria-label'] += ' (เปิดในแท็บใหม่)'; }
-  return h('a', props, icon('download'), 'ดาวน์โหลด');
+  else { props.target = '_blank'; props.rel = 'noopener noreferrer'; props['aria-label'] += ` ${t('newTab')}`; }
+  return h('a', props, icon('download'), t('download'));
 }
 
-// การ์ด: ภาพปก (กดเปิดลิงก์ได้) + หัวข้อ + ปุ่ม — รายละเอียดดูได้จาก "รายละเอียด"
-function cardEl(r) {
+// การ์ดแบบปุ่มยาว: ภาพปก (กดเปิดลิงก์ได้) + ชื่อรายการ + ปุ่มเปิดดูออนไลน์ + ปุ่มรายละเอียด
+// ปุ่มดาวน์โหลดอยู่ในหน้าต่างรายละเอียด
+const TONES = 6;
+function cardEl(r, index = 0) {
   const titleId = uid('card-title');
   const u = safeUrl(r.url);
   const title = displayTitle(r);
-  return h('article', { class: 'card', 'aria-labelledby': titleId },
-    u ? h('a', { class: 'cover-link', href: u.href, target: '_blank', rel: 'noopener noreferrer', tabindex: '-1', 'aria-hidden': 'true' }, coverEl(r)) : coverEl(r),
-    h('div', { class: 'card-body' },
-      h('h3', { class: 'card-title', id: titleId, tabindex: '-1', title },
-        u ? h('a', openLinkProps(u, title), title) : title),
-      h('div', { class: 'card-actions' },
-        primaryAction(r, 'btn-primary-wide'),
-        h('button', { type: 'button', class: 'btn btn-outline', 'data-detail': r.id, 'aria-label': `รายละเอียด: ${title}` }, 'รายละเอียด'),
-        downloadAction(r),
-      ),
+  const thumb = coverEl(r);
+  thumb.classList.add('pill-thumb');
+  const viewBtn = u
+    ? h('a', { class: 'pill-btn', ...openLinkProps(u, `${t('openOnline')}: ${title}`), title: t('openOnline'), html: ICONS.open })
+    : h('button', { type: 'button', class: 'pill-btn', disabled: true, 'aria-label': `${t('noLink')}: ${title}`, title: t('noLink'), html: ICONS.open });
+  return h('article', { class: `pill tone-${index % TONES}`, 'aria-labelledby': titleId },
+    u ? h('a', { class: 'pill-thumb-link', href: u.href, target: '_blank', rel: 'noopener noreferrer', tabindex: '-1', 'aria-hidden': 'true' }, thumb) : thumb,
+    h('h3', { class: 'card-title', id: titleId, tabindex: '-1', title },
+      u ? h('a', openLinkProps(u, title), title) : title),
+    h('div', { class: 'pill-actions' },
+      viewBtn,
+      h('button', { type: 'button', class: 'pill-btn', 'data-detail': r.id, 'aria-label': `${t('details')}: ${title}`, title: t('details'), html: ICONS.arrow }),
     ),
   );
 }
 
 function skeletonCards(n) {
-  return Array.from({ length: n }, () => h('div', { class: 'card skeleton', 'aria-hidden': 'true' },
-    h('div', { class: 'cover' }),
-    h('div', { class: 'card-body' }, h('div', { class: 'sk-line', style: 'width:85%' }), h('div', { class: 'sk-line', style: 'width:60%' }), h('div', { class: 'sk-line', style: 'height:44px;border-radius:10px' })),
+  return Array.from({ length: n }, () => h('div', { class: 'pill skeleton', 'aria-hidden': 'true' },
+    h('div', { class: 'pill-thumb' }),
+    h('div', { style: 'flex:1;display:flex;flex-direction:column;gap:8px' }, h('div', { class: 'sk-line', style: 'width:70%' }), h('div', { class: 'sk-line', style: 'width:40%' })),
+    h('div', { class: 'pill-actions' }, h('div', { class: 'sk-circle' }), h('div', { class: 'sk-circle' })),
   ));
 }
 
@@ -1028,32 +1302,33 @@ function renderPublic() {
   els.resultHead.hidden = !state.q || state.load !== 'ready';
 
   if (state.load === 'loading' || state.load === 'idle') {
-    els.listStatus.textContent = 'กำลังโหลดข้อมูล';
+    els.listStatus.textContent = t('loading');
     els.grid.append(...skeletonCards(6));
     return;
   }
   if (state.load === 'error') {
     els.resultsState.append(statePanel({
-      title: 'โหลดข้อมูลไม่สำเร็จ', text: state.error, error: true,
-      action: h('button', { type: 'button', class: 'btn', onclick: () => loadPublicData() }, 'ลองใหม่'),
+      title: t('loadFailed'), text: state.error, error: true,
+      action: h('button', { type: 'button', class: 'btn', onclick: () => loadPublicData() }, t('retry')),
     }));
     return;
   }
   if (!state.resources.length) {
-    els.resultsState.append(statePanel({ title: 'ยังไม่มีรายการ', text: 'โปรดกลับมาตรวจสอบอีกครั้งภายหลัง' }));
+    els.resultsState.append(statePanel({ title: t('emptyTitle'), text: t('emptyText') }));
     return;
   }
 
   state.results = filteredResults();
   state.shown = 0;
   if (state.q) {
-    els.count.replaceChildren('ผลการค้นหา “', h('strong', null, state.q), `” ${state.results.length.toLocaleString('th-TH')} รายการ`);
+    const [pre, post] = t('searchResult', { n: fmtNum(state.results.length), q: '\u0001' }).split('\u0001');
+    els.count.replaceChildren(pre, h('strong', null, state.q), post ?? '');
   }
-  els.listStatus.textContent = state.q ? '' : `ทั้งหมด ${state.results.length.toLocaleString('th-TH')} รายการ`;
+  els.listStatus.textContent = state.q ? '' : t('totalItems', { n: fmtNum(state.results.length) });
   if (!state.results.length) {
     els.resultsState.append(statePanel({
-      title: 'ไม่พบรายการที่ค้นหา', text: 'ลองใช้คำค้นอื่น หรือล้างการค้นหาเพื่อดูรายการทั้งหมด',
-      action: h('button', { type: 'button', class: 'btn', onclick: clearSearch }, 'ล้างการค้นหา'),
+      title: t('noResultTitle'), text: t('noResultText'),
+      action: h('button', { type: 'button', class: 'btn', onclick: clearSearch }, t('clearSearch')),
     }));
     return;
   }
@@ -1063,7 +1338,7 @@ function renderPublic() {
 // แสดงการ์ดเพิ่มครั้งละ PAGE_SIZE (ต่อท้าย ไม่วาดใหม่ทั้งหมด เพื่อไม่ให้หน้ากระโดด)
 function appendMore() {
   const next = state.results.slice(state.shown, state.shown + CONFIG.PAGE_SIZE);
-  els.grid.append(...next.map(cardEl));
+  els.grid.append(...next.map((r, i) => cardEl(r, state.shown + i)));
   state.shown += next.length;
   const remaining = state.results.length - state.shown;
   els.loadMore.hidden = remaining <= 0;
@@ -1152,48 +1427,49 @@ function detailRow(label, value) {
 }
 
 function fillDetail(r, { preview = false } = {}) {
-  els.detailTitle.textContent = r ? displayTitle(r) : 'ไม่พบรายการ';
+  els.detailTitle.textContent = r ? displayTitle(r) : t('notFoundTitle');
   const body = [];
   if (!r) {
-    body.push(h('p', { class: 'notice warn', role: 'alert' }, 'ไม่พบรายการหรือรายการนี้ยังไม่เปิดเผยแพร่'));
+    body.push(h('p', { class: 'notice warn', role: 'alert' }, t('notFound')));
     els.detailBody.replaceChildren(...body);
     return;
   }
   if (preview) body.push(h('p', { class: 'notice warn' }, `ตัวอย่างการแสดงผลสำหรับเจ้าหน้าที่ — สถานะปัจจุบัน: ${STATUS_LABEL[r.status] || r.status}`));
   const u = safeUrl(r.url);
   body.push(u ? h('a', { class: 'cover-link', href: u.href, target: '_blank', rel: 'noopener noreferrer', tabindex: '-1', 'aria-hidden': 'true' }, coverEl(r)) : coverEl(r));
-  if (r.description) body.push(h('p', { class: 'detail-desc' }, r.description));
+  const desc = loc(r, 'description');
+  if (desc) body.push(h('p', { class: 'detail-desc' }, desc));
   const rows = [
-    ...detailRow('หมวดหมู่', catName(r.categoryId)),
-    ...detailRow('พื้นที่', areaLabel(r)),
-    ...detailRow('ภาษา', (r.languages || []).map(langLabel).join(', ')),
-    ...detailRow('แหล่งข้อมูล', r.sourceName),
-    ...detailRow('ปี / รุ่น', r.edition),
-    ...detailRow('ไฟล์', fileInfo(r)),
-    ...detailRow('แท็ก', (r.tags || []).join(', ')),
-    ...detailRow('ตรวจสอบลิงก์เมื่อ', fmtDate(r.verifiedAt)),
-    ...detailRow('ปรับปรุงเมื่อ', fmtDate(r.updatedAt)),
+    ...detailRow(t('category'), catName(r.categoryId)),
+    ...detailRow(t('area'), areaLabel(r)),
+    ...detailRow(t('languages'), (r.languages || []).map(langLabel).join(', ')),
+    ...detailRow(t('source'), r.sourceName),
+    ...detailRow(t('edition'), r.edition),
+    ...detailRow(t('file'), fileInfo(r)),
+    ...detailRow(t('tags'), (r.tags || []).join(', ')),
+    ...detailRow(t('verified'), fmtDate(r.verifiedAt)),
+    ...detailRow(t('updated'), fmtDate(r.updatedAt)),
   ];
   if (rows.length) body.push(h('dl', { class: 'detail-list' }, ...rows));
   if (u) {
     body.push(h('p', { class: 'hint' }, driveFileId(u.href)
-      ? 'เปิดผ่าน Google Drive ในแท็บใหม่ — บนมือถืออาจเสนอให้เปิดในแอป Google Drive'
-      : isSameOrigin(u) ? 'เปิดไฟล์บนเว็บไซต์นี้ในแท็บใหม่' : `ลิงก์ไปยัง ${u.hostname} — เปิดในแท็บใหม่`));
+      ? t('hintDrive')
+      : isSameOrigin(u) ? t('hintSameSite') : t('hintExternal', { host: u.hostname })));
   }
   const actions = h('div', { class: 'dialog-actions' }, primaryAction(r), downloadAction(r));
   if (!preview) {
-    const copyBtn = h('button', { type: 'button', class: 'btn btn-outline' }, 'คัดลอกลิงก์');
+    const copyBtn = h('button', { type: 'button', class: 'btn btn-outline' }, t('copyLink'));
     const copyStatus = h('p', { class: 'hint', role: 'status', 'aria-live': 'polite' });
     const shareUrl = `${location.origin}${location.pathname}#resource=${encodeURIComponent(r.id)}`;
     copyBtn.addEventListener('click', async () => {
       try {
         if (!navigator.clipboard?.writeText) throw new Error('no clipboard');
         await navigator.clipboard.writeText(shareUrl);
-        copyStatus.textContent = 'คัดลอกลิงก์แล้ว';
+        copyStatus.textContent = t('copied');
       } catch {
         const input = h('input', { type: 'text', readonly: true, value: shareUrl, id: 'copy-fallback-input' });
         copyStatus.replaceChildren(h('div', { class: 'copy-fallback' },
-          h('label', { for: 'copy-fallback-input' }, 'คัดลอกลิงก์นี้ด้วยตนเอง'), input));
+          h('label', { for: 'copy-fallback-input' }, t('copyManual')), input));
         input.focus(); input.select();
       }
     });
@@ -1203,7 +1479,9 @@ function fillDetail(r, { preview = false } = {}) {
   els.detailBody.replaceChildren(...body);
 }
 
+let detailItem = null;
 function openDetail(r, { opener = null, push = false, preview = false } = {}) {
+  detailItem = r;
   detailOpener = opener;
   detailPreview = preview;
   if (push && r) {
@@ -1732,6 +2010,9 @@ function openResourceForm(r, opener) {
 
   const inp = (id, value, attrs = {}) => h('input', { id, value: value ?? '', ...attrs });
   const fTitle = inp('f-title', data.title, { type: 'text', maxlength: 160 });
+  const fTitleEn = inp('f-titleEn', data.titleEn, { type: 'text', maxlength: 160, lang: 'en' });
+  const fDescEn = h('textarea', { id: 'f-descriptionEn', maxlength: 2000, lang: 'en' });
+  fDescEn.value = data.descriptionEn || '';
   const fUrl = inp('f-url', data.url, { type: 'url', inputmode: 'url', placeholder: 'https://' });
   const fDownload = inp('f-downloadUrl', data.downloadUrl, { type: 'url', inputmode: 'url', placeholder: 'https://' });
   const fCover = inp('f-coverUrl', data.coverUrl, { type: 'url', inputmode: 'url', placeholder: 'https://' });
@@ -1798,7 +2079,9 @@ function openResourceForm(r, opener) {
     return {
       ...data,
       title: fTitle.value.trim(),
+      titleEn: fTitleEn.value.trim(),
       description: fDesc.value.trim(),
+      descriptionEn: fDescEn.value.trim(),
       categoryId: fCat.value || null,
       url,
       downloadUrl: nz(fDownload.value),
@@ -1818,7 +2101,7 @@ function openResourceForm(r, opener) {
   };
 
   const fieldIds = {
-    title: 'f-title', description: 'f-description', url: 'f-url', downloadUrl: 'f-downloadUrl', coverUrl: 'f-coverUrl',
+    title: 'f-title', titleEn: 'f-titleEn', description: 'f-description', descriptionEn: 'f-descriptionEn', url: 'f-url', downloadUrl: 'f-downloadUrl', coverUrl: 'f-coverUrl',
     province: 'f-province', district: 'f-district', tags: 'f-tags', sourceName: 'f-sourceName', edition: 'f-edition',
     fileSizeBytes: 'f-fileSizeBytes',
   };
@@ -1865,12 +2148,14 @@ function openResourceForm(r, opener) {
     h('div', { class: 'dialog-body' },
       summary,
       h('div', { class: 'form-grid' },
-        field('f-title', 'ชื่อรายการ', fTitle, { full: true }),
+        field('f-title', 'ชื่อรายการ (ไทย)', fTitle, { full: true }),
+        field('f-titleEn', 'ชื่อรายการ (English)', fTitleEn, { full: true, hint: 'แสดงเมื่อผู้ใช้เลือก EN — เว้นว่างได้ ระบบจะแสดงชื่อภาษาไทยแทน' }),
         field('f-url', 'ลิงก์สำหรับ "เปิดดูออนไลน์"', fUrl, { full: true, hint: 'ลิงก์เว็บไซต์ ไฟล์ PDF หรือรูปภาพ (https://) วางลิงก์แชร์ Google Drive ได้เลย ระบบจะแปลงให้' }),
         h('div', { class: 'full' }, driveNote),
         field('f-downloadUrl', 'ลิงก์ดาวน์โหลด', fDownload, { full: true, hint: 'เว้นว่างได้ — ถ้าว่างจะไม่แสดงปุ่มดาวน์โหลด' }),
         field('f-coverUrl', 'ลิงก์ภาพปก', fCover, { full: true, hint: 'เว้นว่างได้ — ถ้าว่างจะแสดงภาพสำรอง' }),
-        field('f-description', 'คำอธิบาย', fDesc, { full: true, hint: 'แสดงในหน้ารายละเอียด (ข้อมูลที่เผยแพร่อ่านได้สาธารณะ ห้ามใส่ข้อมูลภายใน)' }),
+        field('f-description', 'คำอธิบาย (ไทย)', fDesc, { full: true, hint: 'แสดงในหน้ารายละเอียด (ข้อมูลที่เผยแพร่อ่านได้สาธารณะ ห้ามใส่ข้อมูลภายใน)' }),
+        field('f-descriptionEn', 'คำอธิบาย (English)', fDescEn, { full: true, hint: 'เว้นว่างได้ ระบบจะแสดงคำอธิบายภาษาไทยแทน' }),
         field('f-status', 'สถานะ', fStatus, { hint: 'เผยแพร่ = แสดงบนหน้าเว็บ / ฉบับร่าง = ซ่อนไว้ / เก็บเข้าคลัง = เลิกใช้' }),
         more,
       ),
@@ -1994,7 +2279,7 @@ async function addDefaultCategories(btn) {
   try {
     for (const [i, name] of DEFAULT_CATEGORY_NAMES.entries()) {
       if (existing.has(norm(name))) continue;
-      await repo.saveCategory(null, { name, sortOrder: i + 1, active: true }, null);
+      await repo.saveCategory(null, { name, nameEn: DEFAULT_CATEGORY_NAMES_EN[i], sortOrder: i + 1, active: true }, null);
       added++;
     }
     state.publicStale = true;
@@ -2009,21 +2294,25 @@ async function addDefaultCategories(btn) {
 function openCategoryForm(c, opener) {
   const isNew = !c;
   const name = h('input', { type: 'text', id: 'c-name', value: c?.name || '', maxlength: 80 });
+  const nameEn = h('input', { type: 'text', id: 'c-name-en', value: c?.nameEn || '', maxlength: 80, lang: 'en' });
   const active = h('input', { type: 'checkbox', id: 'c-active', checked: c ? c.active : true });
   const msg = h('div', { role: 'alert' });
   const save = h('button', { type: 'submit', class: 'btn' }, 'บันทึก');
   const form = h('form', { novalidate: true },
     h('div', { class: 'dialog-body' },
-      h('div', { class: 'field' }, h('label', { for: 'c-name' }, 'ชื่อหมวดหมู่'), name),
+      h('div', { class: 'field' }, h('label', { for: 'c-name' }, 'ชื่อหมวดหมู่ (ไทย)'), name),
+      h('div', { class: 'field' }, h('label', { for: 'c-name-en' }, 'ชื่อหมวดหมู่ (English)'), nameEn,
+        h('p', { class: 'hint' }, 'เว้นว่างได้ ระบบจะแสดงชื่อภาษาไทยแทน')),
       h('label', { class: 'check' }, active, 'ใช้งาน (เลือกได้ในฟอร์มรายการ)'),
       msg),
     h('div', { class: 'form-actions' }, save, h('button', { type: 'button', class: 'btn btn-ghost', onclick: () => closeAdminDialog() }, 'ยกเลิก')));
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (adminDialogBusy) return;
-    const data = { name: name.value.trim(), sortOrder: c?.sortOrder ?? (state.categories.length + 1), active: active.checked };
+    const data = { name: name.value.trim(), nameEn: nameEn.value.trim(), sortOrder: c?.sortOrder ?? (state.categories.length + 1), active: active.checked };
     const errs = [];
-    if (!data.name || data.name.length > 80) errs.push('กรุณากรอกชื่อหมวดหมู่ (ไม่เกิน 80 ตัวอักษร)');
+    if (!data.name || data.name.length > 80) errs.push('กรุณากรอกชื่อหมวดหมู่ภาษาไทย (ไม่เกิน 80 ตัวอักษร)');
+    if (data.nameEn.length > 80) errs.push('ชื่อภาษาอังกฤษไม่เกิน 80 ตัวอักษร');
     if (state.categories.some((x) => x.id !== c?.id && norm(x.name) === norm(data.name))) errs.push('มีหมวดหมู่ชื่อนี้อยู่แล้ว');
     if (errs.length) { msg.replaceChildren(h('p', { class: 'notice error' }, errs.join(' / '))); return; }
     adminDialogBusy = true; save.disabled = true; save.textContent = 'กำลังบันทึก...';
@@ -2046,12 +2335,49 @@ function openCategoryForm(c, opener) {
 /* =====================================================================
    เริ่มต้น
    ===================================================================== */
-function renderChrome() {
+// ข้อความคงที่ในหน้า (data-i18n = textContent, data-i18n-attr = "attr:key;attr:key")
+function applyStaticI18n() {
+  document.documentElement.lang = LANG;
+  document.title = t('docTitle');
+  document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    for (const pair of el.dataset.i18nAttr.split(';')) {
+      const [attr, key] = pair.split(':');
+      el.setAttribute(attr, t(key));
+    }
+  });
+  document.querySelectorAll('.lang-switch [data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
   if (CONFIG.MODE === 'demo') {
     const banner = $('#mode-banner');
-    banner.replaceChildren(h('strong', null, 'ข้อมูลตัวอย่าง — ยังไม่ใช่ข้อมูลเผยแพร่จริง'), ' (โหมดสาธิต)');
+    banner.replaceChildren(h('strong', null, t('demoBanner')), t('demoMode'));
     banner.hidden = false;
   }
+}
+
+function setLang(lang, { save = true } = {}) {
+  LANG = lang === 'en' ? 'en' : 'th';
+  if (save) { try { localStorage.setItem('cri-lang', LANG); } catch { /* storage ใช้ไม่ได้ */ } }
+  applyStaticI18n();
+  if (els.adminView.hidden) renderPublic();
+  else renderAdmin();
+  if (els.detail.open && detailItem) fillDetail(detailItem, { preview: detailPreview });
+}
+document.querySelectorAll('.lang-switch [data-lang]').forEach((b) => b.addEventListener('click', () => {
+  if (b.dataset.lang !== LANG) setLang(b.dataset.lang);
+}));
+
+function initialLang() {
+  const fromUrl = new URLSearchParams(location.search).get('lang');
+  if (fromUrl === 'en' || fromUrl === 'th') return fromUrl;
+  try {
+    const saved = localStorage.getItem('cri-lang');
+    if (saved === 'en' || saved === 'th') return saved;
+  } catch { /* storage ใช้ไม่ได้ */ }
+  return 'th';
+}
+
+function renderChrome() {
+  setLang(initialLang(), { save: false });
   if (CONFIG.LOGO_URL) {
     const logo = $('#brand-logo');
     logo.addEventListener('load', () => { logo.hidden = false; }, { once: true });
